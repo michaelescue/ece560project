@@ -1,0 +1,107 @@
+
+Questa Version 10.7b linux_x86_64 12 Jun 2018
+
+-------------------------------------------------------------------------------
+Design Report
+Created Fri Dec  3 22:13:11 2021
+-------------------------------------------------------------------------------
+
+
+Design 'darkriscv'
+===============================================================================
+
+
+---------------------------------------
+Design Summary                    Count
+---------------------------------------
+Clocks                                1
+  User-specified                      1
+  Inferred                            0
+Control Point Bits                  206
+  DUT Input Bits                     67
+  Cut Point Bits                      0
+  Black Box Output Bits               0
+  Undriven Wire Bits                139
+State Bits                         1233
+  Design Register Bits             1233
+  Design Latch Bits                   0
+Storage Structures       
+  Counters                            3
+  RAMs                                2
+Black Boxes                           0
+---------------------------------------
+
+Detailed Design Information
+===============================================================================
+
+
+Clocks
+------------------------------------------------------------------------------
+Port                                   Period         Waveform    Edges
+------------------------------------------------------------------------------
+CLK                                        10              0 5    PE   
+------------------------------------------------------------------------------
+Cut Points
+----------
+  <none>
+
+Black Box Outputs
+-----------------
+  <none>
+
+Undriven Wires
+--------------
+  mychecker.BE  (4 bits)
+  mychecker.DADDR  (32 bits)
+  mychecker.DATAO  (32 bits)
+  mychecker.DEBUG  (4 bits)
+  mychecker.IADDR  (32 bits)
+  mychecker.IDLE  (1 bit)
+  mychecker.RD  (1 bit)
+  mychecker.WR  (1 bit)
+  mychecker.instr  (32 bits)
+
+Latches
+-------
+  <none>
+
+Counters
+--------
+  FLUSH  (2 bits)
+  NXPC2  (32 bits)
+  RESMODE  (4 bits)
+
+RAMs
+----
+  REG1 (Depth 16)
+  REG2 (Depth 16)
+
+Black Boxes (User-specified)
+----------------------------
+  <none>
+
+Black Boxes (Inferred)
+----------------------
+  <none>
+
+
+
+Port Constraints
+-------------------------------------------------------------------------------
+Type                 Clock Domain         Value         Port
+-------------------------------------------------------------------------------
+Clock                <n/a>                -            'CLK'
+Unconstrained        <none>               -            'DATAI'
+Constraint           <none>               1'b0         'HLT'
+Unconstrained        <none>               -            'IDATA'
+Constraint           <none>               1'b0         'RES'
+-------------------------------------------------------------------------------
+
+Instance Usage
+===============================================================================
+Count  Module          Location
+-------------------------------------------------------------------------------
+   1   darkriscv_checker_sva /u/mescue/darkriscv/src/sva/sva_darkriscv.sv (Line 93)
+
+
+

@@ -1,0 +1,159 @@
+# 
+# Questa Static Verification System
+# Version 10.7b linux_x86_64 12 Jun 2018
+
+log created Fri Dec  3 22:13:06 2021 by mescue on auto.ece.pdx.edu
+
+
+Command: netlist elaborate
+Command arguments:
+    -zdb /u/mescue/darkriscv/Output_Results/qcache/DB/zdb_0
+    -tool propcheck
+    -d darkriscv
+    -cuname my_bind_sva
+
+
+## Elaborating Design...
+Reading MTI mapping for library mapping
+Writing all MTI mappings to vmap output ...
+
+Top level modules:
+	darkriscv
+	my_bind_sva
+
+Analyzing design...
+-- Loading module z0in_work.darkriscv
+-- Loading package z0in_work.my_bind_sva
+-- Loading module z0in_work.darkriscv_checker_sva
+Optimizing 3 design-units (inlining 0/2 module instances):
+-- Optimizing package z0in_work.my_bind_sva(fast)
+-- Optimizing module z0in_work.darkriscv_checker_sva(fast)
+-- Optimizing module z0in_work.darkriscv(fast)
+Warning : Too few module port connections for an instance.  Instance 'mychecker', Module 'darkriscv_checker_sva', File '/u/mescue/darkriscv/src/sva/sva_bind.sv', Line 1.  [parser-3]
+        : Interface might be specified incorrectly.  Parsing will continue.
+Optimized design name is zi_opt_csl_488100735_1
+Identified prefix 'darkriscv'.
+Summary: 1 Warnings in processing "netlist elaborate"
+End of log Fri Dec  3 22:13:08 2021
+
+
+# 
+# Questa Static Verification System
+# Version 10.7b linux_x86_64 12 Jun 2018
+
+log created Fri Dec  3 22:13:08 2021 by mescue on auto.ece.pdx.edu
+
+
+Command: netlist create
+Command arguments:
+    -zdb /u/mescue/darkriscv/Output_Results/qcache/DB/zdb_0
+    -tool propcheck
+    -d darkriscv
+    -cuname my_bind_sva
+    -tcs
+
+
+## Synthesizing netlist...
+Processing module 'darkriscv_checker_sva'
+Elaborating module 'darkriscv_checker_sva'.
+Processing module 'darkriscv'
+Elaborating module 'darkriscv'.
+
+##Time Taken (Synthesis) = 26.000000 ticks = 0.260000 secs
+
+Summary: 1 Warnings in processing "netlist create"
+End of log Fri Dec  3 22:13:09 2021
+
+
+# 
+# Questa Static Verification System
+# Version 10.7b linux_x86_64 12 Jun 2018
+
+log created Fri Dec  3 22:13:09 2021 by mescue on auto.ece.pdx.edu
+
+
+Command: formal compile
+Command arguments:
+    -zdb /u/mescue/darkriscv/Output_Results/qcache/DB/zdb_0
+    -d darkriscv
+    -cuname my_bind_sva
+    -tcs
+
+
+## Processing Formal Logic...
+Processing module 'darkriscv_checker_sva'
+Restoring module 'darkriscv_checker_sva'.
+Processing module 'darkriscv'
+Restoring module 'darkriscv'.
+Flattening design 'darkriscv_checker_sva'.
+Flattening design 'darkriscv'.
+Flattening design 'darkriscv'.
+Info    : Detected reset.  Reset: RES, polarity: synchronous, active: high.  [netlist-12]
+Info    : Detected clock.  Clock: CLK, polarity: posedge.  [netlist-11]
+Design is processed for formal verification.  Design 'darkriscv'.
+
+Clocks
+------------------------------------------------------------------------------
+Port                                   Period         Waveform    Edges
+------------------------------------------------------------------------------
+CLK                                        10              0 5    PE   
+------------------------------------------------------------------------------
+
+Blackboxes
+------------------------------------------------------------------------------
+Module name                                                Reason
+------------------------------------------------------------------------------
+<no blackboxed modules>
+------------------------------------------------------------------------------
+
+Inferred directives
+------------------------------------------------------------------------------
+<no inferred directives>
+------------------------------------------------------------------------------
+
+Design is linked for formal analysis.  Design 'darkriscv'.
+Formal model has been created.
+
+Property Summary
+-------------------------------------------------------------------------------
+Total  Directives :41
+Assert Directives :1
+Assume Directives :1
+Cover  Directives :39
+
+SVA Summary
+-------------------------------------------------------------------------------
+SVA Directive Type        Directives           Checkers
+-------------------------------------------------------------------------------
+Assert                         1                   1
+Assume                         1                   1
+Cover                         39                  39
+-------------------------------------------------------------------------------
+
+Design Checks Summary
+-------------------------------------------------------------------------------
+Check                              Found
+-------------------------------------------------------------------------------
+PORT_UNDRIVEN                          1
+-------------------------------------------------------------------------------
+Total                                  1
+-------------------------------------------------------------------------------
+
+
+To see results in the GUI run:
+qverify /u/mescue/darkriscv/Output_Results/formal_compile.db
+
+
+Message Summary
+---------------------------------------------------------------------------
+Count  Type     Message ID         Summary
+---------------------------------------------------------------------------
+    1  Warning  parser-3           Too few module port connections for an instance.
+    1  Info     netlist-11         Detected clock.
+    1  Info     netlist-12         Detected reset.
+
+Summary: 1 Warnings in formal compile
+Final Process Statistics: Max memory 606MB, CPU time 2s, Total time 5s
+End of log Fri Dec  3 22:13:11 2021
+
+

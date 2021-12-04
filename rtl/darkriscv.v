@@ -299,11 +299,14 @@ module darkriscv
                          FCT3==1 ? U1REG<<U2REGX[4:0] :                         
                          //FCT3==5 ? 
                          !FCT7[5] ? U1REG>>U2REGX[4:0] :
-`ifdef MODEL_TECH        
-                         FCT7[5] ? -((-U1REG)>>U2REGX[4:0]; // workaround for modelsim
-`else
+						 
+/* ME: Commented out MODEL_TECH conditional compile statement */
+
+//`ifdef MODEL_TECH        
+                         //FCT7[5] ? -((-U1REG)>>U2REGX[4:0]);// workaround for modelsim
+//`else
                                    $signed(S1REG>>>U2REGX[4:0]);  // (FCT7[5] ? U1REG>>>U2REG[4:0] : 
-`endif                        
+//`endif                        
 
 `ifdef __MAC16X16__
 

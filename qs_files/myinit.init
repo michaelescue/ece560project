@@ -1,5 +1,5 @@
-$default_clock clk
+$default_clock CLK
 $default_input_value 0
-reset_n = 1'b1
-##
-reset_n = 1'b0
+RES = 1'b1
+##2
+RES = 1'b0

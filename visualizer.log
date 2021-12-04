@@ -1,0 +1,54 @@
+VISUALIZERROOT = '/pkgs/mentor/questa_cdc_formal/10.7b/share/modeltech/linux_x86_64/Visualizer'
+USER = 'mescue'
+Loading tcl script /pkgs/mentor/questa_cdc_formal/10.7b/share/modeltech/linux_x86_64/Visualizer/lib/visualizer/tclscripts/designutil.tcl
+Done loading tcl script </pkgs/mentor/questa_cdc_formal/10.7b/share/modeltech/linux_x86_64/Visualizer/lib/visualizer/tclscripts/designutil.tcl>
+Server Initialized ...
+Mentor Graphics software version 10.7b-QCF (Build on Jun  7 2018)
+Copyright (C) 1999-2021 by Mentor Graphics All rights reserved.
+   from_mega_agent
+   +outputDir+/tmp/visscratch.54JWyq
+   +tcl
+   -I/pkgs/mentor/questa_cdc_formal/10.7b/linux_x86_64/share/modeltech/bin/../linux_x86_64/Visualizer/bin/../tb/incl
+   +designfile+/u/mescue/darkriscv/Output_Results/qcache/VISUALIZER/design.bin
+   +show_pi_drvr_rcvr
+   +no_splash
+   +visformal
+   +external_client
+   +designfile+design.bin
+   +designfile+Output_Results/qcache/VISUALIZER/design.bin
+
+Command line option(s) :
+   +outputDir+/tmp/visscratch.54JWyq
+   +tcl
+   -I/pkgs/mentor/questa_cdc_formal/10.7b/linux_x86_64/share/modeltech/bin/../linux_x86_64/Visualizer/bin/../tb/incl
+   +designfile+/u/mescue/darkriscv/Output_Results/qcache/VISUALIZER/design.bin
+   +show_pi_drvr_rcvr
+   +no_splash
+   +visformal
+   +external_client
+   +designfile+design.bin
+   +designfile+Output_Results/qcache/VISUALIZER/design.bin
+
+New PLI Id assignment (at parsing time) will be used.
+
+Resolving hierarchical names.......
+
+
+Done resolving hierarchical names.......
+
+Creating var connectivity .......
+Done Creating var connectivity .......
+Running the Inference engine on the design...
+Inference engine run completed.
+Design Statistics
+        Simple flops = 2
+         Always Comb = 2
+            CA-Muxes = 15
+        Cont-Assigns = 28
+          SVA-Assert = 1
+           SVA-Cover = 39
+End of Design Statistics
+design loaded ...
+Reading file /u/mescue/darkriscv/rtl/darkriscv.v
+completed (0.03 (s)).
+Reading file /u/mescue/darkriscv/src/sva/sva_darkriscv.sv

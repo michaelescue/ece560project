@@ -1,5 +1,8 @@
 # Define clocks
-netlist clock clk -period 10 
+netlist clock CLK -period 10 
 
 # Constrain rst
-formal netlist constraint reset_n 1'b0
+formal netlist constraint RES 1'b0
+
+# Constrain hlt
+formal netlist constraint HLT 1'b0

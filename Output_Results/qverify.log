@@ -1,0 +1,282 @@
+# 
+# Copyright 1995-2018 Mentor Graphics Corporation.
+# All Rights Reserved.
+# 
+# THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION 
+# WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# 
+# THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION
+# 552.  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE
+# UNDER THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# 
+# 
+# Questa Static Verification System
+# Version 10.7b linux_x86_64 12 Jun 2018
+# 
+# log created Fri Dec  3 22:13:06 2021 by mescue on auto.ece.pdx.edu
+# 
+# 
+# Command: netlist elaborate
+# Command arguments:
+#     -zdb /u/mescue/darkriscv/Output_Results/qcache/DB/zdb_0
+#     -tool propcheck
+#     -d darkriscv
+#     -cuname my_bind_sva
+# 
+# 
+## Elaborating Design...
+# Reading MTI mapping for library mapping
+# Writing all MTI mappings to vmap output ...
+# 
+# Top level modules:
+# 	darkriscv
+# 	my_bind_sva
+# 
+# Analyzing design...
+# -- Loading module z0in_work.darkriscv
+# -- Loading package z0in_work.my_bind_sva
+# -- Loading module z0in_work.darkriscv_checker_sva
+# Optimizing 3 design-units (inlining 0/2 module instances):
+# -- Optimizing package z0in_work.my_bind_sva(fast)
+# -- Optimizing module z0in_work.darkriscv_checker_sva(fast)
+# -- Optimizing module z0in_work.darkriscv(fast)
+# Warning : Too few module port connections for an instance.  Instance 'mychecker', Module 'darkriscv_checker_sva', File '/u/mescue/darkriscv/src/sva/sva_bind.sv', Line 1.  [parser-3]
+#         : Interface might be specified incorrectly.  Parsing will continue.
+# Optimized design name is zi_opt_csl_488100735_1
+# Identified prefix 'darkriscv'.
+# Summary: 1 Warnings in processing "netlist elaborate"
+# End of log Fri Dec  3 22:13:08 2021
+# 
+# 
+# 
+# Questa Static Verification System
+# Version 10.7b linux_x86_64 12 Jun 2018
+# 
+# log created Fri Dec  3 22:13:08 2021 by mescue on auto.ece.pdx.edu
+# 
+# 
+# Command: netlist create
+# Command arguments:
+#     -zdb /u/mescue/darkriscv/Output_Results/qcache/DB/zdb_0
+#     -tool propcheck
+#     -d darkriscv
+#     -cuname my_bind_sva
+#     -tcs
+# 
+# 
+## Synthesizing netlist...
+# Processing module 'darkriscv_checker_sva'
+# Elaborating module 'darkriscv_checker_sva'.
+# Processing module 'darkriscv'
+# Elaborating module 'darkriscv'.
+# 
+##Time Taken (Synthesis) = 26.000000 ticks = 0.260000 secs
+# 
+# Summary: 1 Warnings in processing "netlist create"
+# End of log Fri Dec  3 22:13:09 2021
+# 
+# 
+# 
+# Questa Static Verification System
+# Version 10.7b linux_x86_64 12 Jun 2018
+# 
+# log created Fri Dec  3 22:13:09 2021 by mescue on auto.ece.pdx.edu
+# 
+# 
+# Command: formal compile
+# Command arguments:
+#     -zdb /u/mescue/darkriscv/Output_Results/qcache/DB/zdb_0
+#     -d darkriscv
+#     -cuname my_bind_sva
+#     -tcs
+# 
+# 
+## Processing Formal Logic...
+# Processing module 'darkriscv_checker_sva'
+# Restoring module 'darkriscv_checker_sva'.
+# Processing module 'darkriscv'
+# Restoring module 'darkriscv'.
+# Flattening design 'darkriscv_checker_sva'.
+# Flattening design 'darkriscv'.
+# Flattening design 'darkriscv'.
+# Info    : Detected reset.  Reset: RES, polarity: synchronous, active: high.  [netlist-12]
+# Info    : Detected clock.  Clock: CLK, polarity: posedge.  [netlist-11]
+# Design is processed for formal verification.  Design 'darkriscv'.
+# 
+# Clocks
+# ------------------------------------------------------------------------------
+# Port                                   Period         Waveform    Edges
+# ------------------------------------------------------------------------------
+# CLK                                        10              0 5    PE   
+# ------------------------------------------------------------------------------
+# 
+# Blackboxes
+# ------------------------------------------------------------------------------
+# Module name                                                Reason
+# ------------------------------------------------------------------------------
+# <no blackboxed modules>
+# ------------------------------------------------------------------------------
+# 
+# Inferred directives
+# ------------------------------------------------------------------------------
+# <no inferred directives>
+# ------------------------------------------------------------------------------
+# 
+# Design is linked for formal analysis.  Design 'darkriscv'.
+# Formal model has been created.
+# 
+# Property Summary
+# -------------------------------------------------------------------------------
+# Total  Directives :41
+# Assert Directives :1
+# Assume Directives :1
+# Cover  Directives :39
+# 
+# SVA Summary
+# -------------------------------------------------------------------------------
+# SVA Directive Type        Directives           Checkers
+# -------------------------------------------------------------------------------
+# Assert                         1                   1
+# Assume                         1                   1
+# Cover                         39                  39
+# -------------------------------------------------------------------------------
+# 
+# Design Checks Summary
+# -------------------------------------------------------------------------------
+# Check                              Found
+# -------------------------------------------------------------------------------
+# PORT_UNDRIVEN                          1
+# -------------------------------------------------------------------------------
+# Total                                  1
+# -------------------------------------------------------------------------------
+# 
+# 
+# To see results in the GUI run:
+# qverify /u/mescue/darkriscv/Output_Results/formal_compile.db
+# 
+# 
+# Message Summary
+# ---------------------------------------------------------------------------
+# Count  Type     Message ID         Summary
+# ---------------------------------------------------------------------------
+#     1  Warning  parser-3           Too few module port connections for an instance.
+#     1  Info     netlist-11         Detected clock.
+#     1  Info     netlist-12         Detected reset.
+# 
+# Summary: 1 Warnings in formal compile
+# Final Process Statistics: Max memory 606MB, CPU time 2s, Total time 5s
+# End of log Fri Dec  3 22:13:11 2021
+# 
+# 
+# 
+# Command-line arguments:
+# 	-jobs 4 \
+# 	-init qs_files/myinit.init \
+# 	-timeout 5m 
+# 
+# Info    : Using initialization sequence file to initialize design state.  File 'qs_files/myinit.init'.  [formal-205]
+# Applying synthesis semantics.
+# [00:00:00] Status: Done 0/40, Update 0/40, Proof radius min=0, avg=0.00, Mem=0GB
+# [00:00:00] Established connection with process, Hostname=auto.ece.pdx.edu, pid=50534.
+# [00:00:00] Established connection with process, Hostname=auto.ece.pdx.edu, pid=50533.
+# [00:00:00] Established connection with process, Hostname=auto.ece.pdx.edu, pid=50535.
+# [00:00:00] Established connection with process, Hostname=auto.ece.pdx.edu, pid=50536.
+# [00:00:00] Covered @1: mychecker.instr_cover[27].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[28].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[29].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[14].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[30].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[31].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[0].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[1].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[32].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[15].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[2].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[3].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[33].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[4].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[16].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[5].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[34].opcode
+# [00:00:00] Proven: mychecker.assert_not_rd_and_wr
+# [00:00:00] Covered @1: mychecker.instr_cover[17].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[6].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[7].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[18].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[8].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[35].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[9].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[19].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[10].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[36].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[20].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[11].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[12].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[21].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[13].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[22].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[23].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[24].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[25].opcode
+# [00:00:00] Covered @1: mychecker.instr_cover[26].opcode
+# [00:00:00] Covered @19: mychecker.cover_wr_en
+# [00:00:00] Covered @19: mychecker.cover_rd_en
+# [00:00:01] Status: Done 40/40, Update 40/40, Proof radius min=N/A, avg=N/A, Mem=1GB
+# 
+# ---------------------------------------
+# Property Summary                  Count
+# ---------------------------------------
+# Assumed                               1
+# Proven                                1
+# Covered                              39
+# Inconclusive                          0
+# Fired                                 0
+# Uncoverable                           0
+# ---------------------------------------
+# Total                                41
+# ---------------------------------------
+# 
+# 
+# --------- Process Statistics ----------
+# Elapsed Time                       1 s 
+# -------- Orchestration Process --------
+# ------- auto.ece.pdx.edu:50521 --------
+# CPU Time                           0 s 
+# Peak Memory                      0.2 GB
+# ---------- Engine Processes -----------
+# ------- auto.ece.pdx.edu:50534 --------
+# CPU Time                           0 s 
+# Peak Memory                      0.1 GB
+# CPU Utilization                    0 % 
+# ------- auto.ece.pdx.edu:50535 --------
+# CPU Time                           1 s 
+# Peak Memory                      0.3 GB
+# CPU Utilization                  100 % 
+# ------- auto.ece.pdx.edu:50533 --------
+# CPU Time                           0 s 
+# Peak Memory                      0.1 GB
+# CPU Utilization                    0 % 
+# ------- auto.ece.pdx.edu:50536 --------
+# CPU Time                           0 s 
+# Peak Memory                      0.1 GB
+# CPU Utilization                    0 % 
+# ---------------------------------------
+# 
+# 
+# Message Summary
+# ---------------------------------------------------------------------------
+# Count  Type     Message ID         Summary
+# ---------------------------------------------------------------------------
+#     1  Info     formal-205         Using initialization sequence file to initialize design state.
+# 
+# Final Process Statistics: Peak Memory 0.28GB, Cumulative CPU Time 1s, Elapsed Time 1s
+# 
+# To see results in the GUI run:
+# qverify /u/mescue/darkriscv/Output_Results/formal_verify.db
+# 
+# End of log Fri Dec  3 22:13:14 2021
+# 
+# 

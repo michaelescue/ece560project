@@ -42,8 +42,7 @@
 default: valid
 
 # Added by ME 11/07/21
-valid:
-	make sim valid
+valid: clean compile formal debug
 
 all:
 	make -C src all
@@ -57,3 +56,36 @@ clean:
 	make -C src clean
 	make -C sim clean
 	make -C boards clean
+	
+# Added by ME 11/07/21
+compile:
+	vlib work
+	vmap work work
+	vlog rtl/darkriscv.v
+	vlog -sv -mfcu -cuname my_bind_sva \
+		./src/sva/sva_bind.sv ./src/sva/sva_darkriscv.sv
+
+# Checked file names to this point 11/07/21
+# Updated source file path to "rtl/darkriscv.v"
+# Updated bind file path to "./src/sva/sva_bind.sv"
+# Updated checker file path to "./src/sva/sva_darkriscv.sv"
+
+formal:
+	qverify -c -od Output_Results -do "\
+		do qs_files/directives.tcl; \
+		formal compile -d darkriscv -cuname my_bind_sva \
+			-target_cover_statements; \
+		formal verify -init qs_files/myinit.init \
+		-timeout 5m; \
+		exit"
+		
+#Checked file names to this point 11/08/21
+# Updated checker instance name to "darkrsicv"
+
+debug: 
+	qverify Output_Results/formal_verify.db &
+
+clean:
+	qverify_clean
+	\rm -rf work modelsim.ini *.wlf *.log replay* transcript *.db
+	\rm -rf Output_Results *.tcl 
