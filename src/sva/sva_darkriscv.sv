@@ -94,31 +94,25 @@ module darkriscv_checker_sva(
     input             CLK,   // clock
     input             RES,   // reset
     input             HLT,   // halt
-    
-`ifdef __THREADS__    
-    output [`__THREADS__-1:0] TPTR,  // thread pointer
-`endif    
 
     input      [31:0] IDATA, // instruction data bus
-    output     [31:0] IADDR, // instruction addr bus
     
     input      [31:0] DATAI, // data bus (input)
-    output     [31:0] DATAO, // data bus (output)
-    output     [31:0] DADDR, // addr bus
+	
+	// Immediate variables
+	input [19:0] uimm,
+	input [11:0] iimm,
+	input [6:0] simm1,
+	input [5:0] bimm2,
+	input [4:0] simm2,
+	input bimm1, bimm3,
 
-`ifdef __FLEXBUZZ__
-    output     [ 2:0] DLEN, // data length
-    output            RW,   // data read/write
-`else    
-    output     [ 3:0] BE,   // byte enable
-    output            WR,    // write enable
-    output            RD,    // read enable 
-`endif    
-
-    output            IDLE,   // idle output
-    
-    output [3:0]  DEBUG       // old-school osciloscope based debug! :)
+	// Register variables
+	input [4:0] rs1, rs2, rd
+	
 	);
+	
+
 
 // Instruction types
 typedef enum bit [2:0] {ITYPE, STYPE, UTYPE, RTYPE, JTYPE, BTYPE, INSTR_ERR} INSTR_TYPE;
@@ -141,11 +135,74 @@ btype BOP, BEQ, BNE, BLT, BLTU, BGE, BGEU;
 wire [31:0] OPS [`NUM_OPS];
 assign OPS = RES ? '{`NUM_OPS{'x}} : {ADDI, SLTI, SLTIU, ANDI, ORI, XORI, JALR, LW, LH, LHU, LB, LBU, SLLI, SRLI, SRAI, SW, SH, SB, LUI, AUIPC, ADD, SUB, SLT, SLTU, AND, OR, XOR, SLL, SRL, SRA, JAL, BEQ, BNE, BLT, BLTU, BGE, BGEU};
 
-// Driving operations block.
+// Encoding operations block.
 
 always_comb begin
 	
-	// Data parsing
+	// i-type
+	
+	ADDI.funct3 = 0; ADDI.opcode 	= `MCC; ADDI.imm = iimm; 	ADDI.rs1 = rs1; 	ADDI.rd = rd;
+	SLTI.funct3 = 2; SLTI.opcode 	= `MCC; SLTI.imm = iimm; 	SLTI.rs1 = rs1; 	SLTI.rd = rd;
+	SLTIU.funct3 = 3; SLTIU.opcode 	= `MCC; SLTIU.imm = iimm; 	SLTIU.rs1 = rs1; 	SLTIU.rd = rd;
+	XORI.funct3 = 4; XORI.opcode 	= `MCC; XORI.imm = iimm; 	XORI.rs1 = rs1; 	XORI.rd = rd;
+	ANDI.funct3 = 7; ANDI.opcode 	= `MCC; ANDI.imm = iimm; 	ANDI.rs1 = rs1; 	ANDI.rd = rd;
+	ORI.funct3 	= 6; ORI.opcode 	= `MCC; ORI.imm = iimm; 		ORI.rs1 = rs1; 		ORI.rd = rd;
+	SLLI.funct3 = 1; SLLI.opcode 	= `MCC;	SLLI.imm = 0; 			SLLI.rs1 = rs1; 	SLLI.rd = rd;
+	SRLI.funct3 = 5; SRLI.opcode 	= `MCC; SRLI.imm = 0; 			SRLI.rs1 = rs1; 	SRLI.rd = rd;
+	SRAI.funct3 = 5; SRAI.opcode 	= `MCC; SRAI.imm = 32;			SRAI.rs1 = rs1; 	SRAI.rd = rd;
+	
+	LW.funct3 		= 2; LW.opcode 		= `LCC; LW.imm = iimm; 	LW.rs1 = rs1; 	LW.rd = rs1;
+	LH.funct3 		= 1; LH.opcode 		= `LCC; LH.imm = iimm; 	LH.rs1 = rs1; 	LH.rd = rs1;
+	LHU.funct3 		= 5; LHU.opcode 	= `LCC; LHU.imm = iimm; 	LHU.rs1 = rs1; 	LHU.rd = rs1;
+	LB.funct3 		= 0; LB.opcode 		= `LCC; LB.imm = iimm; 	LB.rs1 = rs1; 	LB.rd = rs1;
+	LBU.funct3 		= 4; LBU.opcode 	= `LCC; LBU.imm = iimm; 	LBU.rs1 = rs1; 	LBU.rd = rs1;
+	
+	JALR.funct3		= 0; JALR.opcode    = `JALR; JALR.imm = iimm; 	JALR.rs1 = rs1; 	JALR.rd = rs1;
+	
+	// s-type
+	
+	SW.funct3 		= 2; SW.opcode 		= `SCC; SW.imm1 = simm1; 	SW.rs1 = rs1;	SW.imm2 = simm2; 	SW.rs2 = rs2;
+	SH.funct3 		= 1; SH.opcode 		= `SCC;	SH.imm1 = simm1; 	SH.rs1 = rs1;	SH.imm2 = simm2; 	SH.rs2 = rs2;
+	SB.funct3 		= 0; SB.opcode 		= `SCC;	SB.imm1 = simm1; 	SB.rs1 = rs1;	SB.imm2 = simm2; 	SB.rs2 = rs2;
+	
+	// u-type
+	
+	LUI.opcode 		= `LUI;		LUI.imm = uimm; 	 	LUI.rd = UOP.rd;						
+	AUIPC.opcode 	= `AUIPC;	AUIPC.imm = uimm; 	 	AUIPC.rd = UOP.rd;
+	
+	// r-type
+	
+	ADD.funct7		= 0; ADD.funct3		= 0;	ADD.opcode = `RCC; 	ADD.rs2 = rs2; 	ADD.rs1 = rs1; 	ADD.rd = rd;
+	SUB.funct7		= 32; SUB.funct3	= 0;	SUB.opcode = `RCC; 	SUB.rs2 = rs2; 	SUB.rs1 = rs1; 	SUB.rd = rd;
+	SLT.funct7		= 0; SLT.funct3		= 2;	SLT.opcode = `RCC; 	SLT.rs2 = rs2; 	SLT.rs1 = rs1; 	SLT.rd = rd;
+	SLTU.funct7		= 0; SLTU.funct3	= 3;	SLTU.opcode = `RCC; SLTU.rs2 = rs2; 	SLTU.rs1 = rs1; 	SLTU.rd = rd;
+	AND.funct7		= 0; AND.funct3		= 7;	AND.opcode = `RCC; 	AND.rs2 = rs2; 	AND.rs1 = rs1; 	AND.rd = rd;
+	OR.funct7		= 0; OR.funct3		= 6;	OR.opcode = `RCC; 	OR.rs2 = rs2; 	OR.rs1 = rs1; 	OR.rd = rd;
+	XOR.funct7		= 0; XOR.funct3		= 4;	XOR.opcode = `RCC; 	XOR.rs2 = rs2; 	XOR.rs1 = rs1; 	XOR.rd = rd;
+	SLL.funct7		= 0; SLL.funct3		= 1;	SLL.opcode = `RCC; 	SLL.rs2 = rs2; 	SLL.rs1 = rs1; 	SLL.rd = rd;
+	SRL.funct7		= 0; SRL.funct3		= 5;	SRL.opcode = `RCC; 	SRL.rs2 = rs2; 	SRL.rs1 = rs1; 	SRL.rd = rd;
+	SRA.funct7		= 32; SRA.funct3	= 5;	SRA.opcode = `RCC; 	SRA.rs2 = rs2; 	SRA.rs1 = rs1; 	SRA.rd = rd;
+	
+	// j-type
+	
+	JAL.opcode 		= `JAL;	JAL.imm1 = JOP.imm1; 	JAL.imm2 = JOP.imm2;	JAL.imm3 = JOP.imm3;	JAL.imm4 = JOP.imm4; JAL.rd = rd;
+	
+	// b-type
+	
+	BEQ.funct3		= 0; BEQ.opcode		= `BCC; BEQ.imm1 = bimm1; BEQ.imm2 = bimm2; BEQ.rs2 = rs2; BEQ.rs1 = rs1; BEQ.rd = rd; BEQ.imm3 = bimm3;
+	BNE.funct3		= 1; BNE.opcode		= `BCC; BNE.imm1 = bimm1; BNE.imm2 = bimm2; BNE.rs2 = rs2; BNE.rs1 = rs1; BNE.rd = rd; BNE.imm3 = bimm3;
+	BLT.funct3		= 4; BLT.opcode		= `BCC; BLT.imm1 = bimm1; BLT.imm2 = bimm2; BLT.rs2 = rs2; BLT.rs1 = rs1; BLT.rd = rd; BLT.imm3 = bimm3;
+	BLTU.funct3		= 6; BLTU.opcode	= `BCC; BLTU.imm1 = bimm1; BLTU.imm2 = bimm2; BLTU.rs2 = rs2; BLTU.rs1 = rs1; BLTU.rd = rd; BLTU.imm3 = bimm3;
+	BGE.funct3		= 5; BGE.opcode		= `BCC; BGE.imm1 = bimm1; BGE.imm2 = bimm2; BGE.rs2 = rs2; BGE.rs1 = rs1; BGE.rd = rd; BGE.imm3 = bimm3;
+	BGEU.funct3		= 7; BGEU.opcode	= `BCC; BGEU.imm1 = bimm1; BGEU.imm2 = bimm2; BGEU.rs2 = rs2; BGEU.rs1 = rs1; BGEU.rd = rd; BGEU.imm3 = bimm3;
+	
+end
+
+// Decode block
+
+always_comb begin 	
+
+	// Feed instruction type fields
 	
 	IOP = IDATA;
 	SOP = IDATA;
@@ -153,69 +210,6 @@ always_comb begin
 	ROP = IDATA;
 	JOP = IDATA;
 	BOP = IDATA;
-
-	// i-type
-	
-	ADDI.funct3 = 0; ADDI.opcode 	= `MCC; ADDI.imm = IOP.imm; 	ADDI.rs1 = IOP.rs1; 	ADDI.rd = IOP.rd;
-	SLTI.funct3 = 2; SLTI.opcode 	= `MCC; SLTI.imm = IOP.imm; 	SLTI.rs1 = IOP.rs1; 	SLTI.rd = IOP.rd;
-	SLTIU.funct3 = 3; SLTIU.opcode 	= `MCC; SLTIU.imm = IOP.imm; 	SLTIU.rs1 = IOP.rs1; 	SLTIU.rd = IOP.rd;
-	XORI.funct3 = 4; XORI.opcode 	= `MCC; XORI.imm = IOP.imm; 	XORI.rs1 = IOP.rs1; 	XORI.rd = IOP.rd;
-	ANDI.funct3 = 7; ANDI.opcode 	= `MCC; ANDI.imm = IOP.imm; 	ANDI.rs1 = IOP.rs1; 	ANDI.rd = IOP.rd;
-	ORI.funct3 	= 6; ORI.opcode 	= `MCC; ORI.imm = IOP.imm; 		ORI.rs1 = IOP.rs1; 		ORI.rd = IOP.rd;
-	SLLI.funct3 = 1; SLLI.opcode 	= `MCC;	SLLI.imm = 0; 			SLLI.rs1 = IOP.rs1; 	SLLI.rd = IOP.rd;
-	SRLI.funct3 = 5; SRLI.opcode 	= `MCC; SRLI.imm = 0; 			SRLI.rs1 = IOP.rs1; 	SRLI.rd = IOP.rd;
-	SRAI.funct3 = 5; SRAI.opcode 	= `MCC; SRAI.imm = 32;			SRAI.rs1 = IOP.rs1; 	SRAI.rd = IOP.rd;
-	
-	LW.funct3 		= 2; LW.opcode 		= `LCC; LW.imm = IOP.imm; 	LW.rs1 = IOP.rs1; 	LW.rd = IOP.rd;
-	LH.funct3 		= 1; LH.opcode 		= `LCC; LH.imm = IOP.imm; 	LH.rs1 = IOP.rs1; 	LH.rd = IOP.rd;
-	LHU.funct3 		= 5; LHU.opcode 	= `LCC; LHU.imm = IOP.imm; 	LHU.rs1 = IOP.rs1; 	LHU.rd = IOP.rd;
-	LB.funct3 		= 0; LB.opcode 		= `LCC; LB.imm = IOP.imm; 	LB.rs1 = IOP.rs1; 	LB.rd = IOP.rd;
-	LBU.funct3 		= 4; LBU.opcode 	= `LCC; LBU.imm = IOP.imm; 	LBU.rs1 = IOP.rs1; 	LBU.rd = IOP.rd;
-	
-	JALR.funct3		= 0; JALR.opcode    = `JALR; JALR.imm = IOP.imm; 	JALR.rs1 = IOP.rs1; 	JALR.rd = IOP.rd;
-	
-	// s-type
-	
-	SW.funct3 		= 2; SW.opcode 		= `SCC; SW.imm1 = SOP.imm1; 	SW.rs1 = SOP.rs1;	SW.imm2 = SOP.imm2; 	SW.rs2 = SOP.rs2;
-	SH.funct3 		= 1; SH.opcode 		= `SCC;	SH.imm1 = SOP.imm1; 	SH.rs1 = SOP.rs1;	SH.imm2 = SOP.imm2; 	SH.rs2 = SOP.rs2;
-	SB.funct3 		= 0; SB.opcode 		= `SCC;	SB.imm1 = SOP.imm1; 	SB.rs1 = SOP.rs1;	SB.imm2 = SOP.imm2; 	SB.rs2 = SOP.rs2;
-	
-	// u-type
-	
-	LUI.opcode 		= `LUI;		LUI.imm = UOP.imm; 	 	LUI.rd = UOP.rd;						
-	AUIPC.opcode 	= `AUIPC;	AUIPC.imm = UOP.imm; 	 	AUIPC.rd = UOP.rd;
-	
-	// r-type
-	
-	ADD.funct7		= 0; ADD.funct3		= 0;	ADD.opcode = `RCC; 	ADD.rs2 = ROP.rs2; 	ADD.rs1 = ROP.rs1; 	ADD.rd = ROP.rd;
-	SUB.funct7		= 32; SUB.funct3	= 0;	SUB.opcode = `RCC; 	SUB.rs2 = ROP.rs2; 	SUB.rs1 = ROP.rs1; 	SUB.rd = ROP.rd;
-	SLT.funct7		= 0; SLT.funct3		= 2;	SLT.opcode = `RCC; 	SLT.rs2 = ROP.rs2; 	SLT.rs1 = ROP.rs1; 	SLT.rd = ROP.rd;
-	SLTU.funct7		= 0; SLTU.funct3	= 3;	SLTU.opcode = `RCC; SLTU.rs2 = ROP.rs2; 	SLTU.rs1 = ROP.rs1; 	SLTU.rd = ROP.rd;
-	AND.funct7		= 0; AND.funct3		= 7;	AND.opcode = `RCC; 	AND.rs2 = ROP.rs2; 	AND.rs1 = ROP.rs1; 	AND.rd = ROP.rd;
-	OR.funct7		= 0; OR.funct3		= 6;	OR.opcode = `RCC; 	OR.rs2 = ROP.rs2; 	OR.rs1 = ROP.rs1; 	OR.rd = ROP.rd;
-	XOR.funct7		= 0; XOR.funct3		= 4;	XOR.opcode = `RCC; 	XOR.rs2 = ROP.rs2; 	XOR.rs1 = ROP.rs1; 	XOR.rd = ROP.rd;
-	SLL.funct7		= 0; SLL.funct3		= 1;	SLL.opcode = `RCC; 	SLL.rs2 = ROP.rs2; 	SLL.rs1 = ROP.rs1; 	SLL.rd = ROP.rd;
-	SRL.funct7		= 0; SRL.funct3		= 5;	SRL.opcode = `RCC; 	SRL.rs2 = ROP.rs2; 	SRL.rs1 = ROP.rs1; 	SRL.rd = ROP.rd;
-	SRA.funct7		= 32; SRA.funct3	= 5;	SRA.opcode = `RCC; 	SRA.rs2 = ROP.rs2; 	SRA.rs1 = ROP.rs1; 	SRA.rd = ROP.rd;
-	
-	// j-type
-	
-	JAL.opcode 		= `JAL;	JAL.imm1 = JOP.imm1; 	JAL.imm2 = JOP.imm2;	JAL.imm3 = JOP.imm3;	JAL.imm4 = JOP.imm4; JAL.rd = JOP.rd;
-	
-	// b-type
-	
-	BEQ.funct3		= 0; BEQ.opcode		= `BCC; BEQ.imm1 = BOP.imm1; BEQ.imm2 = BOP.imm2; BEQ.rs2 = BOP.rs2; BEQ.rs1 = BOP.rs1; BEQ.rd = BOP.rd; BEQ.imm3 = BOP.imm3;
-	BNE.funct3		= 1; BNE.opcode		= `BCC; BNE.imm1 = BOP.imm1; BNE.imm2 = BOP.imm2; BNE.rs2 = BOP.rs2; BNE.rs1 = BOP.rs1; BNE.rd = BOP.rd; BNE.imm3 = BOP.imm3;
-	BLT.funct3		= 4; BLT.opcode		= `BCC; BLT.imm1 = BOP.imm1; BLT.imm2 = BOP.imm2; BLT.rs2 = BOP.rs2; BLT.rs1 = BOP.rs1; BLT.rd = BOP.rd; BLT.imm3 = BOP.imm3;
-	BLTU.funct3		= 6; BLTU.opcode	= `BCC; BLTU.imm1 = BOP.imm1; BLTU.imm2 = BOP.imm2; BLTU.rs2 = BOP.rs2; BLTU.rs1 = BOP.rs1; BLTU.rd = BOP.rd; BLTU.imm3 = BOP.imm3;
-	BGE.funct3		= 5; BGE.opcode		= `BCC; BGE.imm1 = BOP.imm1; BGE.imm2 = BOP.imm2; BGE.rs2 = BOP.rs2; BGE.rs1 = BOP.rs1; BGE.rd = BOP.rd; BGE.imm3 = BOP.imm3;
-	BGEU.funct3		= 7; BGEU.opcode	= `BCC; BGEU.imm1 = BOP.imm1; BGEU.imm2 = BOP.imm2; BGEU.rs2 = BOP.rs2; BGEU.rs1 = BOP.rs1; BGEU.rd = BOP.rd; BGEU.imm3 = BOP.imm3;
-	
-end
-
-// Decode block
-
-always_comb begin 	
 	
 	// Given IDATA, what Instruction type?
 
@@ -291,7 +285,6 @@ default clocking c0 @(posedge CLK); endclocking
 
 // Sequences:
 
-
 // Properties:
 
 // Op code covers
@@ -308,16 +301,44 @@ cover_wr_en: cover property( darkriscv.WR == 1'b1 );
 
 // Read Enable cover
 
-cover_rd_en: cover property( darkriscv.RD == 1'b1 );
+cover_rd_en: cover property( darkriscv.RD  == 1'b1 );
+
+// Idle enable cover
+
+cover_idle_en: cover property( darkriscv.IDLE == 1'b1 );
 
 // Assuming valid instruction inputs.
 
 assume_valid_idata: assume property( 
 	IDATA ==? ADDI || IDATA ==? SLTI || IDATA ==? SLTIU || IDATA ==? ANDI || IDATA ==? ORI || IDATA ==? XORI || IDATA ==? JALR || IDATA ==? LW || IDATA ==? LH || IDATA ==? LHU || IDATA ==? LB || IDATA ==? LBU || IDATA ==? SLLI || IDATA ==? SRLI || IDATA ==? SRAI || IDATA ==? SW || IDATA ==? SH || IDATA ==? SB || IDATA ==? LUI || IDATA ==? AUIPC || IDATA ==? ADD || IDATA ==? SUB || IDATA ==? SLT || IDATA ==? SLTU || IDATA ==? AND || IDATA ==? OR || IDATA ==? XOR || IDATA ==? SLL || IDATA ==? SRL || IDATA ==? SRA || IDATA ==? JAL || IDATA ==? BEQ || IDATA ==? BNE || IDATA ==? BLT || IDATA ==? BLTU || IDATA ==? BGE || IDATA ==? BGEU );
+	
+// Assuming non-zero immediates
+assume_imm_nonzero: assume property(
+	uimm != 0 &&
+	iimm != 0 &&
+	simm1 != 0 &&
+	bimm2 != 0 &&
+	simm2 != 0 &&
+	bimm1 != 0 &&
+	bimm3 != 0 );
+	
+// Assuming non 0 register targets
+assumme_rx_nonzero: assume property(
+	rd != 0 &&
+	rs1 != 0 &&
+	rs2 != 0 );
 		
 // Assert Not both Read and Write
 
 assert_not_rd_and_wr: assert property( !(darkriscv.WR == 1'b1 && darkriscv.RD == 1'b1) );
+
+// Assert Write Enable follows store
+
+`ifdef __3STAGE__
+	assert_WR_3_after_store: assert property( (IDATA ==? SW) |-> ##3 darkriscv.WR );
+`else
+	assert_WR_2_after_store: assert property( (IDATA ==? SW) |-> ##2 darkriscv.WR );
+`endif
 
 
 endmodule

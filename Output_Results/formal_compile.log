@@ -2,7 +2,7 @@
 # Questa Static Verification System
 # Version 10.7b linux_x86_64 12 Jun 2018
 
-log created Fri Dec  3 22:13:06 2021 by mescue on auto.ece.pdx.edu
+log created Sat Dec  4 16:22:27 2021 by mescue on auto.ece.pdx.edu
 
 
 Command: netlist elaborate
@@ -34,14 +34,14 @@ Warning : Too few module port connections for an instance.  Instance 'mychecker'
 Optimized design name is zi_opt_csl_488100735_1
 Identified prefix 'darkriscv'.
 Summary: 1 Warnings in processing "netlist elaborate"
-End of log Fri Dec  3 22:13:08 2021
+End of log Sat Dec  4 16:22:28 2021
 
 
 # 
 # Questa Static Verification System
 # Version 10.7b linux_x86_64 12 Jun 2018
 
-log created Fri Dec  3 22:13:08 2021 by mescue on auto.ece.pdx.edu
+log created Sat Dec  4 16:22:28 2021 by mescue on auto.ece.pdx.edu
 
 
 Command: netlist create
@@ -59,17 +59,17 @@ Elaborating module 'darkriscv_checker_sva'.
 Processing module 'darkriscv'
 Elaborating module 'darkriscv'.
 
-##Time Taken (Synthesis) = 26.000000 ticks = 0.260000 secs
+##Time Taken (Synthesis) = 29.000000 ticks = 0.290000 secs
 
 Summary: 1 Warnings in processing "netlist create"
-End of log Fri Dec  3 22:13:09 2021
+End of log Sat Dec  4 16:22:29 2021
 
 
 # 
 # Questa Static Verification System
 # Version 10.7b linux_x86_64 12 Jun 2018
 
-log created Fri Dec  3 22:13:09 2021 by mescue on auto.ece.pdx.edu
+log created Sat Dec  4 16:22:29 2021 by mescue on auto.ece.pdx.edu
 
 
 Command: formal compile
@@ -116,29 +116,19 @@ Formal model has been created.
 
 Property Summary
 -------------------------------------------------------------------------------
-Total  Directives :41
-Assert Directives :1
-Assume Directives :1
-Cover  Directives :39
+Total  Directives :45
+Assert Directives :2
+Assume Directives :3
+Cover  Directives :40
 
 SVA Summary
 -------------------------------------------------------------------------------
 SVA Directive Type        Directives           Checkers
 -------------------------------------------------------------------------------
-Assert                         1                   1
-Assume                         1                   1
-Cover                         39                  39
+Assert                         2                   2
+Assume                         3                   3
+Cover                         40                  40
 -------------------------------------------------------------------------------
-
-Design Checks Summary
--------------------------------------------------------------------------------
-Check                              Found
--------------------------------------------------------------------------------
-PORT_UNDRIVEN                          1
--------------------------------------------------------------------------------
-Total                                  1
--------------------------------------------------------------------------------
-
 
 To see results in the GUI run:
 qverify /u/mescue/darkriscv/Output_Results/formal_compile.db
@@ -153,7 +143,7 @@ Count  Type     Message ID         Summary
     1  Info     netlist-12         Detected reset.
 
 Summary: 1 Warnings in formal compile
-Final Process Statistics: Max memory 606MB, CPU time 2s, Total time 5s
-End of log Fri Dec  3 22:13:11 2021
+Final Process Statistics: Max memory 606MB, CPU time 2s, Total time 4s
+End of log Sat Dec  4 16:22:31 2021
 
 

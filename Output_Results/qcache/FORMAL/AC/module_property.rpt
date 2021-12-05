@@ -5,253 +5,277 @@ Module: darkriscv_checker_sva
 ===============================================================================
 Summary
 -------------------------------------------------------------------------------
-Assertions   : 1 
-Assumptions  : 1 
-Covers       : 39 
+Assertions   : 2 
+Assumptions  : 3 
+Covers       : 40 
 -------------------------------------------------------------------------------
 assert assert_not_rd_and_wr (sva)
   Instance: mychecker.assert_not_rd_and_wr
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 320
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 333
   Severity: error
   Stats:   depth=1 gates=4 flops=0
 
+assert assert_WR_2_after_store (sva)
+  Instance: mychecker.assert_WR_2_after_store
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 340
+  Severity: error
+  Stats:   depth=3 gates=8 flops=3
+
 assume assume_valid_idata (sva)
   Instance: mychecker.assume_valid_idata
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 316
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 313
   Severity: error
   Stats:   depth=1 gates=38 flops=0
 
+assume assume_imm_nonzero (sva)
+  Instance: mychecker.assume_imm_nonzero
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 323
+  Severity: error
+  Stats:   depth=1 gates=15 flops=0
+
+assume assumme_rx_nonzero (sva)
+  Instance: mychecker.assumme_rx_nonzero
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 329
+  Severity: error
+  Stats:   depth=1 gates=7 flops=0
+
 cover instr_cover[0].opcode (sva)
   Instance: mychecker.instr_cover[0].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[1].opcode (sva)
   Instance: mychecker.instr_cover[1].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[2].opcode (sva)
   Instance: mychecker.instr_cover[2].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[3].opcode (sva)
   Instance: mychecker.instr_cover[3].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[4].opcode (sva)
   Instance: mychecker.instr_cover[4].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[5].opcode (sva)
   Instance: mychecker.instr_cover[5].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[6].opcode (sva)
   Instance: mychecker.instr_cover[6].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[7].opcode (sva)
   Instance: mychecker.instr_cover[7].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[8].opcode (sva)
   Instance: mychecker.instr_cover[8].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[9].opcode (sva)
   Instance: mychecker.instr_cover[9].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[10].opcode (sva)
   Instance: mychecker.instr_cover[10].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[11].opcode (sva)
   Instance: mychecker.instr_cover[11].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[12].opcode (sva)
   Instance: mychecker.instr_cover[12].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[13].opcode (sva)
   Instance: mychecker.instr_cover[13].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[14].opcode (sva)
   Instance: mychecker.instr_cover[14].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[15].opcode (sva)
   Instance: mychecker.instr_cover[15].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[16].opcode (sva)
   Instance: mychecker.instr_cover[16].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[17].opcode (sva)
   Instance: mychecker.instr_cover[17].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[18].opcode (sva)
   Instance: mychecker.instr_cover[18].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[19].opcode (sva)
   Instance: mychecker.instr_cover[19].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[20].opcode (sva)
   Instance: mychecker.instr_cover[20].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[21].opcode (sva)
   Instance: mychecker.instr_cover[21].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[22].opcode (sva)
   Instance: mychecker.instr_cover[22].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[23].opcode (sva)
   Instance: mychecker.instr_cover[23].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[24].opcode (sva)
   Instance: mychecker.instr_cover[24].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[25].opcode (sva)
   Instance: mychecker.instr_cover[25].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[26].opcode (sva)
   Instance: mychecker.instr_cover[26].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[27].opcode (sva)
   Instance: mychecker.instr_cover[27].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[28].opcode (sva)
   Instance: mychecker.instr_cover[28].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[29].opcode (sva)
   Instance: mychecker.instr_cover[29].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[30].opcode (sva)
   Instance: mychecker.instr_cover[30].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[31].opcode (sva)
   Instance: mychecker.instr_cover[31].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[32].opcode (sva)
   Instance: mychecker.instr_cover[32].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[33].opcode (sva)
   Instance: mychecker.instr_cover[33].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[34].opcode (sva)
   Instance: mychecker.instr_cover[34].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[35].opcode (sva)
   Instance: mychecker.instr_cover[35].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover instr_cover[36].opcode (sva)
   Instance: mychecker.instr_cover[36].opcode
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 301
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 294
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover cover_wr_en (sva)
   Instance: mychecker.cover_wr_en
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 307
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 300
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 
 cover cover_rd_en (sva)
   Instance: mychecker.cover_rd_en
-  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 311
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 304
+  Severity: info
+  Stats:   depth=1 gates=1 flops=0
+
+cover cover_idle_en (sva)
+  Instance: mychecker.cover_idle_en
+  Location: File /u/mescue/darkriscv/src/sva/sva_darkriscv.sv, Line 308
   Severity: info
   Stats:   depth=1 gates=1 flops=0
 

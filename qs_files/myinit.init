@@ -1,5 +1,5 @@
 $default_clock CLK
 $default_input_value 0
 RES = 1'b1
-##2
+## 3
 RES = 1'b0

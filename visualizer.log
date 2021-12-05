@@ -6,7 +6,7 @@ Server Initialized ...
 Mentor Graphics software version 10.7b-QCF (Build on Jun  7 2018)
 Copyright (C) 1999-2021 by Mentor Graphics All rights reserved.
    from_mega_agent
-   +outputDir+/tmp/visscratch.54JWyq
+   +outputDir+/tmp/visscratch.Sn0SEv
    +tcl
    -I/pkgs/mentor/questa_cdc_formal/10.7b/linux_x86_64/share/modeltech/bin/../linux_x86_64/Visualizer/bin/../tb/incl
    +designfile+/u/mescue/darkriscv/Output_Results/qcache/VISUALIZER/design.bin
@@ -18,7 +18,7 @@ Copyright (C) 1999-2021 by Mentor Graphics All rights reserved.
    +designfile+Output_Results/qcache/VISUALIZER/design.bin
 
 Command line option(s) :
-   +outputDir+/tmp/visscratch.54JWyq
+   +outputDir+/tmp/visscratch.Sn0SEv
    +tcl
    -I/pkgs/mentor/questa_cdc_formal/10.7b/linux_x86_64/share/modeltech/bin/../linux_x86_64/Visualizer/bin/../tb/incl
    +designfile+/u/mescue/darkriscv/Output_Results/qcache/VISUALIZER/design.bin
@@ -45,10 +45,10 @@ Design Statistics
          Always Comb = 2
             CA-Muxes = 15
         Cont-Assigns = 28
-          SVA-Assert = 1
-           SVA-Cover = 39
+          SVA-Assert = 2
+           SVA-Cover = 40
 End of Design Statistics
 design loaded ...
 Reading file /u/mescue/darkriscv/rtl/darkriscv.v
-completed (0.03 (s)).
+completed (0.02 (s)).
 Reading file /u/mescue/darkriscv/src/sva/sva_darkriscv.sv

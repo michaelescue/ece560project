@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Questa PropCheck Version 10.7b linux_x86_64 12 Jun 2018
 -------------------------------------------------------------------------------
-Report Generated               : Fri Dec  3 22:13:12 2021
+Report Generated               : Sat Dec  4 16:22:32 2021
 -------------------------------------------------------------------------------
 
 Command-line arguments:
@@ -35,23 +35,27 @@ Using user-specified initialization sequence:
 $default_clock CLK
 $default_input_value 0
 RES = 1'b1
-##2
+## 3
 RES = 1'b0
 
 ---------------- END RESET SEQUENCE ----------------
 
 
 -------------------------------------------------------------------------------
-Assumptions (1)
+Assumptions (3)
 -------------------------------------------------------------------------------
+mychecker.assume_imm_nonzero
 mychecker.assume_valid_idata
+mychecker.assumme_rx_nonzero
 -------------------------------------------------------------------------------
 
 
 -------------------------------------------------------------------------------
-Active Targets (40)
+Active Targets (42)
 -------------------------------------------------------------------------------
+mychecker.assert_WR_2_after_store
 mychecker.assert_not_rd_and_wr
+mychecker.cover_idle_en
 mychecker.cover_rd_en
 mychecker.cover_wr_en
 mychecker.instr_cover[0].opcode
@@ -97,19 +101,72 @@ mychecker.instr_cover[9].opcode
 -------------------------------------------------------------------------------
 X Registers in Starting State
 -------------------------------------------------------------------------------
-  36 registers (72.0% of 50 in sequential fanin of properties)
+  32 registers (64.0% of 50 in sequential fanin of properties)
 -------------------------------------------------------------------------------
-  FLUSH (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 151) 2'bxx
   NXPC (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 238) 
-    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  NXPC2 (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 226) 
     32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   PC (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 239) 
     32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  REG1 (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
-    32'bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-  REG2 (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
-    32'bXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  REG1[0] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[10] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[11] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[12] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[13] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[14] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[1] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[2] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[3] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[4] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[5] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[6] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[7] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[8] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG1[9] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 230) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[0] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[10] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[11] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[12] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[13] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[14] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[1] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[2] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[3] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[4] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[5] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[6] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[7] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[8] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  REG2[9] (File /u/mescue/darkriscv/rtl/darkriscv.v, Line 231) 
+    32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 -------------------------------------------------------------------------------
 
 
@@ -123,20 +180,20 @@ Z Registers in Starting State
 ---------------------------------------
 Formal Netlist Statistics         Count
 ---------------------------------------
-Control Point Bits                  128
+Control Point Bits                  195
   DUT Input Bits                     64
-  Cut Point Bits                      0
+  Cut Point Bits                     67
   Black Box Output Bits               0
   Undriven Wire Bits                  0
   Modeling Bits                      64
-State Bits                         1216
+State Bits                         1218
   Counter State Bits                 38
   RAM State Bits                   1024
   Register State Bits               154
-  Property State Bits                 0
-Logic Gates                        6314
+  Property State Bits                 2
+Logic Gates                        7228
   Design Gates                     5987
-  Property Gates                    327
+  Property Gates                   1241
 ---------------------------------------
 
 
@@ -148,8 +205,16 @@ mychecker.assert_not_rd_and_wr
 
 
 -------------------------------------------------------------------------------
-Targets Covered (39)
+Targets Fired (1)
 -------------------------------------------------------------------------------
+mychecker.assert_WR_2_after_store
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+Targets Covered (40)
+-------------------------------------------------------------------------------
+mychecker.cover_idle_en
 mychecker.cover_rd_en
 mychecker.cover_wr_en
 mychecker.instr_cover[0].opcode
@@ -221,49 +286,51 @@ Assumptions Used in Bounded Unsatisfiable Sanity Checks
 
 
 -------------------------------------------------------------------------------
-Target Waveforms (39)
+Target Waveforms (41)
 -------------------------------------------------------------------------------
   TB Time(ns) Dist  Target
 -------------------------------------------------------------------------------
-          210   19  mychecker.cover_rd_en
-          210   19  mychecker.cover_wr_en
-           30    1  mychecker.instr_cover[0].opcode
-           30    1  mychecker.instr_cover[10].opcode
-           30    1  mychecker.instr_cover[11].opcode
-           30    1  mychecker.instr_cover[12].opcode
-           30    1  mychecker.instr_cover[13].opcode
-           30    1  mychecker.instr_cover[14].opcode
-           30    1  mychecker.instr_cover[15].opcode
-           30    1  mychecker.instr_cover[16].opcode
-           30    1  mychecker.instr_cover[17].opcode
-           30    1  mychecker.instr_cover[18].opcode
-           30    1  mychecker.instr_cover[19].opcode
-           30    1  mychecker.instr_cover[1].opcode
-           30    1  mychecker.instr_cover[20].opcode
-           30    1  mychecker.instr_cover[21].opcode
-           30    1  mychecker.instr_cover[22].opcode
-           30    1  mychecker.instr_cover[23].opcode
-           30    1  mychecker.instr_cover[24].opcode
-           30    1  mychecker.instr_cover[25].opcode
-           30    1  mychecker.instr_cover[26].opcode
-           30    1  mychecker.instr_cover[27].opcode
-           30    1  mychecker.instr_cover[28].opcode
-           30    1  mychecker.instr_cover[29].opcode
-           30    1  mychecker.instr_cover[2].opcode
-           30    1  mychecker.instr_cover[30].opcode
-           30    1  mychecker.instr_cover[31].opcode
-           30    1  mychecker.instr_cover[32].opcode
-           30    1  mychecker.instr_cover[33].opcode
-           30    1  mychecker.instr_cover[34].opcode
-           30    1  mychecker.instr_cover[35].opcode
-           30    1  mychecker.instr_cover[36].opcode
-           30    1  mychecker.instr_cover[3].opcode
-           30    1  mychecker.instr_cover[4].opcode
-           30    1  mychecker.instr_cover[5].opcode
-           30    1  mychecker.instr_cover[6].opcode
-           30    1  mychecker.instr_cover[7].opcode
-           30    1  mychecker.instr_cover[8].opcode
-           30    1  mychecker.instr_cover[9].opcode
+           60    3  mychecker.assert_WR_2_after_store
+           40    1  mychecker.cover_idle_en
+          220   19  mychecker.cover_rd_en
+          220   19  mychecker.cover_wr_en
+           40    1  mychecker.instr_cover[0].opcode
+           40    1  mychecker.instr_cover[10].opcode
+           40    1  mychecker.instr_cover[11].opcode
+           40    1  mychecker.instr_cover[12].opcode
+           40    1  mychecker.instr_cover[13].opcode
+           40    1  mychecker.instr_cover[14].opcode
+           40    1  mychecker.instr_cover[15].opcode
+           40    1  mychecker.instr_cover[16].opcode
+           40    1  mychecker.instr_cover[17].opcode
+           40    1  mychecker.instr_cover[18].opcode
+           40    1  mychecker.instr_cover[19].opcode
+           40    1  mychecker.instr_cover[1].opcode
+           40    1  mychecker.instr_cover[20].opcode
+           40    1  mychecker.instr_cover[21].opcode
+           40    1  mychecker.instr_cover[22].opcode
+           40    1  mychecker.instr_cover[23].opcode
+           40    1  mychecker.instr_cover[24].opcode
+           40    1  mychecker.instr_cover[25].opcode
+           40    1  mychecker.instr_cover[26].opcode
+           40    1  mychecker.instr_cover[27].opcode
+           40    1  mychecker.instr_cover[28].opcode
+           40    1  mychecker.instr_cover[29].opcode
+           40    1  mychecker.instr_cover[2].opcode
+           40    1  mychecker.instr_cover[30].opcode
+           40    1  mychecker.instr_cover[31].opcode
+           40    1  mychecker.instr_cover[32].opcode
+           40    1  mychecker.instr_cover[33].opcode
+           40    1  mychecker.instr_cover[34].opcode
+           40    1  mychecker.instr_cover[35].opcode
+           40    1  mychecker.instr_cover[36].opcode
+           40    1  mychecker.instr_cover[3].opcode
+           40    1  mychecker.instr_cover[4].opcode
+           40    1  mychecker.instr_cover[5].opcode
+           40    1  mychecker.instr_cover[6].opcode
+           40    1  mychecker.instr_cover[7].opcode
+           40    1  mychecker.instr_cover[8].opcode
+           40    1  mychecker.instr_cover[9].opcode
 -------------------------------------------------------------------------------
 
 
@@ -272,10 +339,11 @@ Target Waveforms Summary by Distance
 ---------------------------------------
 Distance                          Count
 ---------------------------------------
-  1 cycle                            37
+  1 cycle                            38
+  3 cycles                            1
  19 cycles                            2
 ---------------------------------------
-Total                                39
+Total                                41
 ---------------------------------------
 
 
@@ -291,45 +359,45 @@ Engine Performance
 ---------------------- Proofs -------------------------- Waveforms ------------
    Engine |  Safety Liveness Vacuity  Sanity |  Safety Liveness Vacuity  Sanity
 -------------------------------------------------------------------------------
-        7 |       0        0       0       0 |      21        0       0       0
-       10 |       1        0       0       0 |      18        0       0       0
+        7 |       1        0       0       0 |      41        0       0       0
+       10 |       0        0       0       0 |       0        0       1       0
 -------------------------------------------------------------------------------
 
 
 ---------------------------------------
 Property Summary                  Count
 ---------------------------------------
-Assumed                               1
+Assumed                               3
 Proven                                1
-Covered                              39
+Covered                              40
 Inconclusive                          0
-Fired                                 0
+Fired                                 1
 Uncoverable                           0
 ---------------------------------------
-Total                                41
+Total                                45
 ---------------------------------------
 
 
 --------- Process Statistics ----------
 Elapsed Time                       1 s 
 -------- Orchestration Process --------
-------- auto.ece.pdx.edu:50521 --------
+------- auto.ece.pdx.edu:14807 --------
 CPU Time                           0 s 
 Peak Memory                      0.2 GB
 ---------- Engine Processes -----------
-------- auto.ece.pdx.edu:50534 --------
+------- auto.ece.pdx.edu:14822 --------
 CPU Time                           0 s 
 Peak Memory                      0.1 GB
 CPU Utilization                    0 % 
-------- auto.ece.pdx.edu:50535 --------
+------- auto.ece.pdx.edu:14825 --------
 CPU Time                           1 s 
 Peak Memory                      0.3 GB
 CPU Utilization                  100 % 
-------- auto.ece.pdx.edu:50533 --------
+------- auto.ece.pdx.edu:14823 --------
 CPU Time                           0 s 
 Peak Memory                      0.1 GB
 CPU Utilization                    0 % 
-------- auto.ece.pdx.edu:50536 --------
+------- auto.ece.pdx.edu:14824 --------
 CPU Time                           0 s 
 Peak Memory                      0.1 GB
 CPU Utilization                    0 % 

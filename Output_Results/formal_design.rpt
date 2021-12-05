@@ -3,7 +3,7 @@ Questa Version 10.7b linux_x86_64 12 Jun 2018
 
 -------------------------------------------------------------------------------
 Design Report
-Created Fri Dec  3 22:13:11 2021
+Created Sat Dec  4 16:22:31 2021
 -------------------------------------------------------------------------------
 
 
@@ -17,11 +17,11 @@ Design Summary                    Count
 Clocks                                1
   User-specified                      1
   Inferred                            0
-Control Point Bits                  206
+Control Point Bits                  166
   DUT Input Bits                     67
-  Cut Point Bits                      0
+  Cut Point Bits                     67
   Black Box Output Bits               0
-  Undriven Wire Bits                139
+  Undriven Wire Bits                 32
 State Bits                         1233
   Design Register Bits             1233
   Design Latch Bits                   0
@@ -43,7 +43,16 @@ CLK                                        10              0 5    PE
 ------------------------------------------------------------------------------
 Cut Points
 ----------
-  <none>
+  mychecker.bimm1  (1 bit) 
+  mychecker.bimm2  (6 bits) 
+  mychecker.bimm3  (1 bit) 
+  mychecker.iimm  (12 bits) 
+  mychecker.rd  (5 bits) 
+  mychecker.rs1  (5 bits) 
+  mychecker.rs2  (5 bits) 
+  mychecker.simm1  (7 bits) 
+  mychecker.simm2  (5 bits) 
+  mychecker.uimm  (20 bits) 
 
 Black Box Outputs
 -----------------
@@ -51,14 +60,6 @@ Black Box Outputs
 
 Undriven Wires
 --------------
-  mychecker.BE  (4 bits)
-  mychecker.DADDR  (32 bits)
-  mychecker.DATAO  (32 bits)
-  mychecker.DEBUG  (4 bits)
-  mychecker.IADDR  (32 bits)
-  mychecker.IDLE  (1 bit)
-  mychecker.RD  (1 bit)
-  mychecker.WR  (1 bit)
   mychecker.instr  (32 bits)
 
 Latches
